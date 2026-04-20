@@ -1,0 +1,25 @@
+//Grabs the information needed in the list for the World Cup
+var worldCupYear = getColumn("FIFA Men's World Cup Results", "Year");
+var worldCupChampions = getColumn("FIFA Men's World Cup Results", "Champions");
+var worldCupFinalScore = getColumn("FIFA Men's World Cup Results", "Final score");
+var worldCupHosts = getColumn("FIFA Men's World Cup Results", "Hosts");
+var worldCupVenue = getColumn("FIFA Men's World Cup Results", "Venue of championship game");
+
+//The user chooses the year and it sets the information of the World Cup
+onEvent("dropdownYear", "click", function( ) {
+  updateStatistics(getText("dropdownYear"));
+});
+
+//I used Chatgpt to help me make template for loop, if statement, and parameter
+function updateStatistics(year) {
+  for (var i = 0; i < worldCupYear.length; i++) {
+    if (worldCupYear [i] == year) {
+      setText("worldCupChampionsText", "Champions: " + worldCupChampions[i]);
+      setText("worldCupFinalScoreText", "Final Score: " + worldCupFinalScore[i]);
+      setText("worldCupHostsText", "Hosts: " + worldCupHosts[i]);
+      setText("worldCupVenueText", "Venue: " + worldCupVenue[i]);
+      return year;
+    }
+  }
+}
+
